@@ -12,6 +12,8 @@ public abstract class Entity {
 	public int color= 000000;
 	
 	public int life = 0;
+
+	public int ready= 0;
 	
 	
 	

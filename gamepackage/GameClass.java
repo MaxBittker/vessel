@@ -64,7 +64,7 @@ public class GameClass extends Canvas implements Runnable{
 	
 	public void run() {
 		long lastTime = System.nanoTime();
-		double nsPerTick = 1000000000;
+		double nsPerTick = 500000000;
 		int ticks = 0;
 		int frames = 0;
 		
@@ -102,14 +102,24 @@ public class GameClass extends Canvas implements Runnable{
 	
 	}
 	public void tick(){
-		tickCount++;		
+		tickCount++;	
+		
+		for(cell[] p1: bitMap.Map){  // foreach grade in grades
+			for(cell q1: p1){
+				
+				try{
+					q1.Resident.ready = 1;
+	
+				}catch(NullPointerException e ){
+				}
+			}}
+				
 		for(cell[] p: bitMap.Map){  // foreach grade in grades
 		for(cell q: p){
 			
-			
 			try{
-				//q.Resident.tick();
-				q.Resident.move(-1,-1);
+				q.Resident.tick();
+			//	q.Resident.move(-1,1);
 			}catch(NullPointerException e ){
 			}
 		}  }
@@ -118,7 +128,7 @@ public class GameClass extends Canvas implements Runnable{
 
 		//pixels[i] = i + tickCount;
 		 //pixels[i] = i % tickCount * tickCount;
-		pixels = bitMap.mark();
+		pixels = bitMap.mark();}
 		// for(int x =0;x < 100; x++)
 		// 		{
 		//	 for(int y =0;y < 100; y++)
@@ -129,7 +139,7 @@ public class GameClass extends Canvas implements Runnable{
 			 
 	//	}
 			 
-		}
+	
 	
 
 	public void render(){

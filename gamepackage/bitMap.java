@@ -18,8 +18,8 @@ public class bitMap extends GameClass {
 
 	
 public static void genesis(){
-for( int x = 45;x<65; x+=5)
-{for(int y = 45; y<65; y+=5){
+for( int x = 5;x<95; x+=13)
+{for(int y = 5; y<95; y+=13){
 	Populate(x,y);
 }}
 }

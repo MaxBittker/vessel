@@ -9,6 +9,8 @@ public class Mob extends Entity {
 	//public cell[] body = new cell[10];
 	public cell body;
 	public int decision;
+	public int[] direction;
+
 	
 	public Mob(int xf, int yf, int colorf, int lifef) {
 		super(xf, yf, colorf, lifef);
@@ -32,7 +34,8 @@ public class Mob extends Entity {
 	
 	
 	public void tick(){
-	decision = (int)Math.random()*4;
+	decision = (int)(Math.random()*4);
+	if(ready ==1){
       switch (decision) {
           case 0: move(1,1);
                    break;
@@ -42,10 +45,9 @@ public class Mob extends Entity {
                    break;
           case 3: move(-1,-1);
                    break;
-         
           default:
                    break;
-		
+      }
 	}
 		
 	}
@@ -54,7 +56,7 @@ public class Mob extends Entity {
 	@Override
 	public void move(int x, int y) {
 		try{
-			if(!(bitMap.Map[(body.x)+x][(body.y)+y].equals(null)))
+			if((bitMap.Map[(body.x)+x][(body.y)+y].Resident==null))
 				
 			{
 			int colorhold = body.color;
@@ -62,7 +64,8 @@ public class Mob extends Entity {
 			body.Resident= null;
 			body= bitMap.Map[body.x+x][body.y+y];
 			body.Resident = this;
-			body.color = colorhold;}
+			body.color = colorhold;
+			ready = 0;}
 			}catch(ArrayIndexOutOfBoundsException e ){
 				
 			}
