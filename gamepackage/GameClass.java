@@ -18,9 +18,9 @@ public class GameClass extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L;
 
 
-	public static final int WIDTH = 100;
-	public static final int HEIGHT = 100;
-	public static final int SCALE = 7;
+	public static final int WIDTH = 60;
+	public static final int HEIGHT = 60;
+	public static final int SCALE = 11;
 	public static final String NAME = "JAR";
 
 
@@ -64,7 +64,7 @@ public class GameClass extends Canvas implements Runnable{
 	
 	public void run() {
 		long lastTime = System.nanoTime();
-		double nsPerTick = 500000000;
+		double nsPerTick = 200000000;
 		int ticks = 0;
 		int frames = 0;
 		
