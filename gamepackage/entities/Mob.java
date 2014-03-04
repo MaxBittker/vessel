@@ -3,6 +3,8 @@ package gamepackage.entities;
 import gamepackage.bitMap;
 import gamepackage.cell;
 
+import java.util.Random;
+
 
 public class Mob extends Entity {
 	
@@ -10,11 +12,11 @@ public class Mob extends Entity {
 	public cell[] body;
 	public static int decision;
 	public int direction;
-
+	Random random = new Random();
 	
 	public Mob(int xf, int yf, int colorf, int lifef) {
 		super(xf, yf, colorf, lifef);
-		body =  new cell[10];
+		body =  new cell[15];
 		body[0] = bitMap.Map[xf][yf];
 		body[0].color = colorf;
 		direction = 0;
@@ -39,8 +41,8 @@ public class Mob extends Entity {
 	public void tick(){
 		//body.color = body.color*2;
 		//life = life -1;
-	decision = (int)(Math.random()*4);
-	
+	decision = random.nextInt(8);
+
 	if(ready ==1){
 		//if(life<0)
 		//	return;
@@ -48,14 +50,15 @@ public class Mob extends Entity {
           case 0: 
          // move(1,1);
                    break;
-          case 1: if(direction == 0)
+          case 1: if(direction <= 0)
           {  direction = 7;}
-        	  direction--;
+          else  direction--;
         	  // move(1,-1);
                    break;
-          case 2:  direction++;
-          if(direction==7)
+          case 2:  
+          if(direction>=8)
           {direction =0;}
+          else direction++;
                    break;
           case 3: 
                    break;
@@ -91,6 +94,7 @@ public class Mob extends Entity {
      }
      body[0].color = 777000000+ (direction*4444);
      }
+	
 	}
 		
 	

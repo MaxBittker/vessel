@@ -1,6 +1,7 @@
 package gamepackage;
 
 import gamepackage.entities.Mob;
+import gamepackage.entities.worm;
 
 
 public class bitMap extends GameClass {
@@ -18,10 +19,13 @@ public class bitMap extends GameClass {
 
 	
 public static void genesis(){
-for( int x = 5;x<60; x+=13)
-{for(int y = 5; y<60; y+=13){
+for( int x = 5;x<60; x+=30)
+{for(int y = 5; y<60; y+=30){
 	Populate(x,y);
-}}
+}
+wormbirth(50,50);
+
+}
 }
 
 	public static void Populate(int x, int y)
@@ -29,7 +33,14 @@ for( int x = 5;x<60; x+=13)
 	Mob temp= new Mob(x,y,500100300,16);//color then life
 	Map[x][y].Resident= temp;
 	}
+	public static void wormbirth(int x, int y)
+	{
+	worm temp= new worm(x,y,77777777,16);//color then life
+	Map[x][y].Resident= temp;
+//	temp.grow(1, 88005555, 4);
 	
+	
+	}
 
 	public static void initCells(){
 	//populate();
