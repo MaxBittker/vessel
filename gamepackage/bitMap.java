@@ -35,9 +35,11 @@ wormbirth(50,50);
 	}
 	public static void wormbirth(int x, int y)
 	{
-	worm temp= new worm(x,y,77777777,16);//color then life
+	worm temp= new worm(x,y,77777777,55);//color then life
 	Map[x][y].Resident= temp;
-//	temp.grow(1, 88005555, 4);
+	temp.grow(1, 88005555);
+	temp.grow(1, 88005555);
+	//temp.grow(2, 88005555, 4);
 	
 	
 	}

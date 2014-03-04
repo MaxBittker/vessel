@@ -61,6 +61,7 @@ public class Mob extends Entity {
           else direction++;
                    break;
           case 3: 
+        	  
                    break;
           default:
                    break;

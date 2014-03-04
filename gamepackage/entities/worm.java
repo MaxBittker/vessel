@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class worm extends Entity {
 	
-	//public cell[] body = new cell[10];
+
 	public cell[] body;
 	public int length;
 	public static int decision;
@@ -17,7 +17,7 @@ public class worm extends Entity {
 
 	public worm(int xf, int yf, int colorf, int lifef) {
 		super(xf, yf, colorf, lifef);
-		body =  new cell[100];
+		body =  new cell[20];
 		body[0] = bitMap.Map[xf][yf];
 		body[0].color = colorf;
 		length = 0;  //0 index
@@ -25,7 +25,7 @@ public class worm extends Entity {
 	
 	}
 	
-	public int grow(int growdirection, int colorf, int lifef) {
+	public int grow(int growdirection, int color) {
 	
 		
 		int dx  =0;
@@ -53,11 +53,11 @@ public class worm extends Entity {
                 break;
 		 }
 		 try{
-				if((bitMap.Map[body[length].x+dx][ body[length].y+dy].Resident==null))	
+				if(length<20 &&(bitMap.Map[body[length].x+dx][ body[length].y+dy].Resident==null))	
 				{
 					length += 1;
 			        body[length] = bitMap.Map[body[length-1].x+dx][ body[length-1].y+dy];
-					body[length].color = colorf;
+					body[length].color = (int)(body[length-1].color + 1111);
 					body[length].Resident = body[0].Resident;
 							//(int)(body[length-1].color*1.1);
 					
@@ -82,7 +82,12 @@ public class worm extends Entity {
 	
 	public void kill(){
 	    if (life == 0){ 
-	    	color = 000000;}
+	    	
+	    	for (cell cell : body)
+	    		{cell.color= (int) Math.floor(Math.random()*101010101);
+	            cell.Resident = null;
+	    		}
+	    	}
 	}
 	
 
@@ -91,8 +96,10 @@ public class worm extends Entity {
 	public void tick(){
 		//body.color = body.color*2;
 		//life = life -1;
+	if(life <0);
+	kill();
 	
-	decision = random.nextInt(4);
+	decision = random.nextInt(7);
 
 	if(ready ==1){
 		//if(life<0)
@@ -114,10 +121,11 @@ public class worm extends Entity {
         	  direction++;
                    break;
           case 3: 
-        		grow(1, 88005555, 4);
+        	grow(1, 88005555);
                    break;
           default:
         		System.out.println("invalid decision in worm");
+        		life-=1;
         		break;
                    
               
@@ -166,11 +174,12 @@ default:
 				for(int i = 1; i  <= length; i++){
 				
 			colorhold = body[i].color;
-			
-
-			int xhold = body[i].x;
+			 
+			int xhold = body[i].x; //its not working because you changed xyhold to xhold and yhold
 			int	yhold = body[i].y;
 			body[i]= bitMap.Map[xyhold[0]][xyhold[1]];
+			xyhold[0] = xhold;
+			xyhold[1] = yhold;
 			body[i].Resident = this;
 			body[i].color = colorhold;
 			if(i == length){
