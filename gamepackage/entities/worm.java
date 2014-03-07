@@ -22,6 +22,7 @@ public class worm extends Entity {
 		body[0].color = colorf;
 		length = 0;  //0 index
 		direction = 0;
+		body[0].Resident= this;
 	
 	}
 	
@@ -57,7 +58,7 @@ public class worm extends Entity {
 				{
 					length += 1;
 			        body[length] = bitMap.Map[body[length-1].x+dx][ body[length-1].y+dy];
-					body[length].color = (int)(body[length-1].color + 1111);
+					body[length].color = (body[length-1].color - 255*240);
 					body[length].Resident = body[0].Resident;
 							//(int)(body[length-1].color*1.1);
 					
@@ -82,12 +83,18 @@ public class worm extends Entity {
 	
 	public void kill(){
 	    if (life == 0){ 
+	    	int xhold = this.body[length-1].x;
+	    	int yhold = this.body[length-1].y;
+	    	
 	    	
 	    	for (cell cell : body)
-	    		{cell.color= (int) Math.floor(Math.random()*101010101);
+	    		{cell.color= 8545569;
+	    		//(int) Math.floor(Math.random()*50);
 	            cell.Resident = null;
 	    		}
+	     //   bitMap.Map[xhold][yhold].Resident =new worm(xhold, yhold, 256*255, 50);
 	    	}
+	
 	}
 	
 
@@ -96,10 +103,11 @@ public class worm extends Entity {
 	public void tick(){
 		//body.color = body.color*2;
 		//life = life -1;
-	if(life <0);
+	if(life <= 0)
 	kill();
-	
-	decision = random.nextInt(7);
+	else
+	{
+	decision = random.nextInt(5);
 
 	if(ready ==1){
 		//if(life<0)
@@ -152,7 +160,7 @@ default:
      body[0].color = 777000000;
  //	grow(0, 666999000, 4);
      }
- 
+	}
 	}
 		
 	
@@ -161,12 +169,11 @@ default:
 	@Override
 	public void move(int x, int y) {
 		try{
-			if((bitMap.Map[(body[0].x)+x][(body[0].y)+y].Resident==null))	
+			if((bitMap.Map[(body[0].x)+x][(body[0].y)+y].Resident==null)&&bitMap.Map[(body[0].x)+x][(body[0].y)+y].medium==0)	
 			{
 				int colorhold = body[0].color;
 				int[] xyhold = {body[0].x,body[0].y};
-				//body[0].color=(body[0].x+body[0].y);
-			//	body[0].Resident= null;
+		
 				body[0]= bitMap.Map[body[0].x+x][body[0].y+y];
 				body[0].Resident = this;
 				body[0].color = colorhold;
@@ -175,7 +182,7 @@ default:
 				
 			colorhold = body[i].color;
 			 
-			int xhold = body[i].x; //its not working because you changed xyhold to xhold and yhold
+			int xhold = body[i].x;
 			int	yhold = body[i].y;
 			body[i]= bitMap.Map[xyhold[0]][xyhold[1]];
 			xyhold[0] = xhold;
@@ -183,7 +190,7 @@ default:
 			body[i].Resident = this;
 			body[i].color = colorhold;
 			if(i == length){
-				bitMap.Map[xhold][yhold].color=(xhold+yhold);
+				bitMap.Map[xhold][yhold].color=(6291456+(xhold*yhold));
 				bitMap.Map[xhold][yhold].Resident= null;
 			}
 			

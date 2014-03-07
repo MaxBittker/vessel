@@ -6,7 +6,7 @@ import gamepackage.cell;
 import java.util.Random;
 
 
-public class Mob extends Entity {
+public class bird extends Entity {
 	
 	//public cell[] body = new cell[10];
 	public cell[] body;
@@ -14,12 +14,13 @@ public class Mob extends Entity {
 	public int direction;
 	Random random = new Random();
 	
-	public Mob(int xf, int yf, int colorf, int lifef) {
+	public bird(int xf, int yf, int colorf, int lifef) {
 		super(xf, yf, colorf, lifef);
 		body =  new cell[15];
 		body[0] = bitMap.Map[xf][yf];
 		body[0].color = colorf;
 		direction = 0;
+		body[0].Resident= this;
 	
 		// TODO Auto-generated constructor stub
 	}
@@ -41,7 +42,7 @@ public class Mob extends Entity {
 	public void tick(){
 		//body.color = body.color*2;
 		//life = life -1;
-	decision = random.nextInt(8);
+	decision = random.nextInt(4);
 
 	if(ready ==1){
 		//if(life<0)
@@ -61,11 +62,16 @@ public class Mob extends Entity {
           else direction++;
                    break;
           case 3: 
-        	  
+        	 decision = random.nextInt(100);
+        	 if(decision==50)
+        	  bitMap.Map[body[0].x][body[0].y+1].Resident = new seed(body[0].x, body[0].y+1,0,16);
                    break;
           default:
                    break;
       }
+      
+  
+      
       //decision = decision % 7;
      switch(direction){
      case 0: 
@@ -93,7 +99,7 @@ public class Mob extends Entity {
     	 move(-1,0);
     	 break;	 
      }
-     body[0].color = 777000000+ (direction*4444);
+     body[0].color = 12762623+ (direction*2*255);
      }
 	
 	}
@@ -104,10 +110,10 @@ public class Mob extends Entity {
 	@Override
 	public void move(int x, int y) {
 		try{
-			if((bitMap.Map[(body[0].x)+x][(body[0].y)+y].Resident==null))	
+			if((bitMap.Map[(body[0].x)+x][(body[0].y)+y].Resident==null)&&bitMap.Map[(body[0].x)+x][(body[0].y)+y].medium==1)	
 			{
 			int colorhold = body[0].color;
-			body[0].color=(body[0].x+body[0].y);
+			body[0].color=(6340095-body[0].y);
 			body[0].Resident= null;
 			body[0]= bitMap.Map[body[0].x+x][body[0].y+y];
 			body[0].Resident = this;

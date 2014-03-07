@@ -1,6 +1,8 @@
 package gamepackage;
 
-import gamepackage.entities.Mob;
+
+import gamepackage.entities.bird;
+import gamepackage.entities.seed;
 import gamepackage.entities.worm;
 
 
@@ -19,26 +21,42 @@ public class bitMap extends GameClass {
 
 	
 public static void genesis(){
-for( int x = 5;x<60; x+=30)
-{for(int y = 5; y<60; y+=30){
-	Populate(x,y);
+for( int x = 0;x<60; x+=20)
+{for(int y = 30; y<60; y+=20){
+	
+	wormbirth(x,y);
 }
-wormbirth(50,50);
 
-}
+}Populate(20,10);
+Populate(21,10);
+Populate(21,1);
+Populate(20,1);
+Populate(21,6);
+Populate(23,1);
+seedbirth(1,1);
+seedbirth(2,2);
+
 }
 
 	public static void Populate(int x, int y)
 	{
-	Mob temp= new Mob(x,y,500100300,16);//color then life
+	bird temp= new bird(x,y,12762623,16);//color then life
 	Map[x][y].Resident= temp;
 	}
+	
+	public static void seedbirth(int x, int y)
+	{
+	seed temp= new seed(x,y,0,16);//color then life
+	Map[x][y].Resident= temp;
+	}
+	
+	
 	public static void wormbirth(int x, int y)
 	{
-	worm temp= new worm(x,y,77777777,55);//color then life
+	worm temp= new worm(x,y,11916201,55);//color then life
 	Map[x][y].Resident= temp;
-	temp.grow(1, 88005555);
-	temp.grow(1, 88005555);
+	temp.grow(1, 11916201);
+	temp.grow(1, 11916201);
 	//temp.grow(2, 88005555, 4);
 	
 	
@@ -50,16 +68,36 @@ wormbirth(50,50);
 	 		{
 		 for(int j =0;j <GameClass.HEIGHT; j++)
 		 		{
-		
-	Map[i][j] = new cell(i,j,(i+j));
-		
+	
+	Map[i][j] = new cell(i,j,6340095,1);
 				
 		 		}
-		 
+		
 	}
-
+		 for(int i =0;i < GameClass.WIDTH; i++)
+	 		{
+		 for(int j =0;j <GameClass.HEIGHT; j++)
+		 		{
 	
-	
+	 if(Map[i][j].y>26)
+	 { Map[i][j].medium=0;
+	 Map[i][j].color = 5963793;
+	 }	
+		 		}
+		
+		
+	}
+		// Map[1][20].color = 250*250;
+		 //System.out.println(Map[1][20].x);
+		 /*for(cell[] cellarray: Map)
+			 for(cell cell:cellarray)
+			 {
+				 if(cell.x>26)
+				 { cell.medium=0;
+				 cell.color = 6291456;}
+				 
+			 }
+	*/
 	}
 	public static int[] mark(){
 
@@ -71,7 +109,7 @@ wormbirth(50,50);
 		
 	//Map[i][j] = new cell(i,j,(i-j)*(10000));
 			
-			pixels[((i*WIDTH)+j)] = Map[i][j].color;
+			pixels[((j*WIDTH)+i)] = Map[i][j].color;
 			// pixels[((i*100)+j)] = 300000;
 
 				
