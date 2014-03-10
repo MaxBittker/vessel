@@ -18,4 +18,4 @@ concept image: (worms, birds, and sprouts)
 
 
 elaboration on the idea:
-    https://www.dropbox.com/s/609ap7o1oca416h/IDIS210%20Winter.docx
+   http://www.scribd.com/doc/211636388/Jar?secret_password=26isum9zqjmflk7zkltl
