@@ -62,7 +62,7 @@ public class bird extends Entity {
           else direction++;
                    break;
           case 3: 
-        	 decision = random.nextInt(100);
+        	 decision = random.nextInt(60);
         	 if(decision==50)
         	  bitMap.Map[body[0].x][body[0].y+1].Resident = new seed(body[0].x, body[0].y+1,0,16);
                    break;

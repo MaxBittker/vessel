@@ -42,7 +42,7 @@ public class sprout extends Entity {
 	public void tick(){
 		//body.color = body.color*2;
 		//life = life -1;
-	decision = random.nextInt(25);
+	decision = random.nextInt(30);
 
 	if(ready ==1){
 		//if(life<0)
@@ -66,6 +66,14 @@ public class sprout extends Entity {
         		body[length].color = 16773424;
         //	  body[length].branch.viable = 0;
         	  break;
+          case 5:
+        	  decision = random.nextInt(30);
+        	  if(decision == 6 && bitMap.Map[body[length].x+-1][body[length].y].medium==1)
+        	  bitMap.Map[body[length].x+1][body[length].y].Resident = new sprout(body[length].x,body[length].y,29220,10);
+        	  else if(decision == 7 && bitMap.Map[body[length].x-1][body[length].y].medium==1)
+        		  
+        		  bitMap.Map[body[length].x-1][body[length].y].Resident = new sprout(body[length].x,body[length].y,29220,10);  
+        		 
 
           default:
         	  ready = 0;
@@ -92,7 +100,7 @@ public class sprout extends Entity {
 		
 	
 		 try{
-				if(length<16 &&(bitMap.Map[body[length].x+dx][ body[length].y+dy].Resident==null))	
+				if(length<15 &&(bitMap.Map[body[length].x+dx][ body[length].y+dy].Resident==null))	
 				{
 					length += 1;
 			        body[length] = bitMap.Map[body[length-1].x+dx][ body[length-1].y+dy];
