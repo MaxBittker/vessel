@@ -67,6 +67,7 @@ public class seed extends Entity {
 			body.color = colorhold;
 			ready = 0;}
 			else{
+				if(bitMap.Map[(body.x)+x][(body.y)+y].medium==0)
 			 kill();
 			}
 			}catch(ArrayIndexOutOfBoundsException e ){

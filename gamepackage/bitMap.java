@@ -55,8 +55,8 @@ seedbirth(2,2);
 	{
 	worm temp= new worm(x,y,11916201,55);//color then life
 	Map[x][y].Resident= temp;
-	temp.grow(1, 11916201);
-	temp.grow(1, 11916201);
+	temp.grow(1);
+	temp.grow(1);
 	//temp.grow(2, 88005555, 4);
 	
 	

@@ -26,7 +26,7 @@ public class worm extends Entity {
 	
 	}
 	
-	public int grow(int growdirection, int color) {
+	public int grow(int growdirection) {
 	
 		
 		int dx  =0;
@@ -58,7 +58,7 @@ public class worm extends Entity {
 				{
 					length += 1;
 			        body[length] = bitMap.Map[body[length-1].x+dx][ body[length-1].y+dy];
-					body[length].color = (body[length-1].color - 255*240);
+					body[length].color = (body[length-1].color - 255*6);
 					body[length].Resident = body[0].Resident;
 							//(int)(body[length-1].color*1.1);
 					
@@ -89,6 +89,7 @@ public class worm extends Entity {
 	    	
 	    	for (cell cell : body)
 	    		{cell.color= 8545569;
+	    		
 	    		//(int) Math.floor(Math.random()*50);
 	            cell.Resident = null;
 	    		}
@@ -129,7 +130,7 @@ public class worm extends Entity {
         	  direction++;
                    break;
           case 3: 
-        	grow(1, 88005555);
+        	grow(1);
                    break;
           default:
         		System.out.println("invalid decision in worm");
@@ -190,14 +191,14 @@ default:
 			body[i].Resident = this;
 			body[i].color = colorhold;
 			if(i == length){
-				bitMap.Map[xhold][yhold].color=(6291456+(xhold*yhold));
+				bitMap.Map[xhold][yhold].color=(5963797+255*13);
 				bitMap.Map[xhold][yhold].Resident= null;
 			}
 			
 			
 			}
 				if(length == 0)
-				{	bitMap.Map[xyhold[0]][xyhold[1]].color = (xyhold[0]+xyhold[1]);
+				{	bitMap.Map[xyhold[0]][xyhold[1]].color = (5963798);
 					bitMap.Map[xyhold[0]][xyhold[1]].Resident = null;
 				}
 			
