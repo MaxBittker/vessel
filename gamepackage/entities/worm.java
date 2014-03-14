@@ -17,6 +17,7 @@ public class worm extends Entity {
 
 	public worm(int xf, int yf, int colorf, int lifef) {
 		super(xf, yf, colorf, lifef);
+		
 		body =  new cell[20];
 		body[0] = bitMap.Map[xf][yf];
 		body[0].color = colorf;
@@ -54,21 +55,24 @@ public class worm extends Entity {
                 break;
 		 }
 		 try{
-				if(length<20 &&(bitMap.Map[body[length].x+dx][ body[length].y+dy].Resident==null))	
+				if(length<20 && ready ==1 &&(bitMap.Map[body[length].x+dx][ body[length].y+dy].Resident==null))	
 				{
 					length += 1;
 			        body[length] = bitMap.Map[body[length-1].x+dx][ body[length-1].y+dy];
-					body[length].color = (body[length-1].color - 255*6);
+					body[length].color = (body[length-1].color + 255*6);
 					body[length].Resident = body[0].Resident;
 							//(int)(body[length-1].color*1.1);
-					
+					ready =0;
 					return 1;
 				}
 				else{
 					System.out.println("grow failed!");
+					ready =0;
 					return 0;
 				}
+				
 				}catch(ArrayIndexOutOfBoundsException e ){
+					ready =0;
 					return 0;
 				}  
 		
@@ -77,8 +81,8 @@ public class worm extends Entity {
 	
 	
 	public void birth(){
-	life = 1000;
-	color =(int) Math.floor(Math.random()*999999);
+//	life = 1000;
+	//color =(int) Math.floor(Math.random()*999999);
 	}
 	
 	public void kill(){
@@ -89,9 +93,8 @@ public class worm extends Entity {
 	    	
 	    	for (cell cell : body)
 	    		{cell.color= 8545569;
-	    		
-	    		//(int) Math.floor(Math.random()*50);
 	            cell.Resident = null;
+	            cell.medium = 0;
 	    		}
 	     //   bitMap.Map[xhold][yhold].Resident =new worm(xhold, yhold, 256*255, 50);
 	    	}
@@ -106,6 +109,7 @@ public class worm extends Entity {
 		//life = life -1;
 	if(life <= 0)
 	kill();
+	
 	else
 	{
 	decision = random.nextInt(5);
@@ -192,7 +196,7 @@ default:
 			body[i].Resident = this;
 			body[i].color = colorhold;
 			if(i == length){
-				bitMap.Map[xhold][yhold].color=(5963797+255*13);
+				bitMap.Map[xhold][yhold].color=(5963797+255*10);
 				bitMap.Map[xhold][yhold].Resident= null;
 			}
 			
@@ -206,17 +210,18 @@ default:
 			
 		
 			
-			ready = 0;}
+			}
 			
 		
 			
 			else{
 				direction = ((direction+1)%4);
+				
 			}
 			}catch(ArrayIndexOutOfBoundsException e ){
 				direction = ((direction+1)%4);
 			}
-		
+		ready = 0;
 		
 		
 	}

@@ -1,6 +1,8 @@
 package gamepackage;
 
 
+import java.util.Random;
+
 import gamepackage.entities.bird;
 import gamepackage.entities.seed;
 import gamepackage.entities.worm;
@@ -17,7 +19,7 @@ public class bitMap extends GameClass {
 	
 	public static cell[][] Map = new cell[GameClass.WIDTH][GameClass.HEIGHT];
 
-
+	static Random random = new Random();
 
 	
 public static void genesis(){
@@ -27,7 +29,8 @@ for( int x = 0;x<60; x+=20)
 	wormbirth(x,y);
 }
 
-}Populate(20,10);
+}
+Populate(20,10);
 Populate(21,10);
 Populate(21,1);
 Populate(20,1);
@@ -48,18 +51,16 @@ seedbirth(20,2);
 	
 	public static void seedbirth(int x, int y)
 	{
-	seed temp= new seed(x,y,0,16);//color then life
+	seed temp= new seed(x,y,11916201,16);//color then life
 	Map[x][y].Resident= temp;
 	}
 	
 	
 	public static void wormbirth(int x, int y)
 	{
-	worm temp= new worm(x,y,11916201,55);//color then life
+	worm temp= new worm(x,y,11916201,50);//color then life
 	Map[x][y].Resident= temp;
-	temp.grow(1);
-	temp.grow(1);
-	//temp.grow(2, 88005555, 4);
+		
 	
 	
 	}
@@ -71,7 +72,7 @@ seedbirth(20,2);
 		 for(int j =0;j <GameClass.HEIGHT; j++)
 		 		{
 	
-	Map[i][j] = new cell(i,j,6340095,1);
+	Map[i][j] = new cell(i,j,6340095 - random.nextInt(j+1) + random.nextInt(j+1)*255,1);
 				
 		 		}
 		
@@ -83,23 +84,14 @@ seedbirth(20,2);
 	
 	 if(Map[i][j].y>26)
 	 { Map[i][j].medium=0;
-	 Map[i][j].color = 5963793;
+	 Map[i][j].color = 5963793 + random.nextInt(10) + random.nextInt(10)*255 - random.nextInt(7)*255*255;
 	 }	
 		 		}
 		
 		
 	}
-		// Map[1][20].color = 250*250;
-		 //System.out.println(Map[1][20].x);
-		 /*for(cell[] cellarray: Map)
-			 for(cell cell:cellarray)
-			 {
-				 if(cell.x>26)
-				 { cell.medium=0;
-				 cell.color = 6291456;}
-				 
-			 }
-	*/
+	
+	
 	}
 	public static int[] mark(){
 

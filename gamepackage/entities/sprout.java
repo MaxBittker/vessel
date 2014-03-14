@@ -119,7 +119,7 @@ public class sprout extends Entity {
 				{
 					length += 1;
 			        body[length] = bitMap.Map[body[length-1].x+dx][ body[length-1].y+dy];
-					body[length].color = (body[length-1].color -20);
+					body[length].color = (body[length-1].color -2*255);
 					body[length].Resident = body[0].Resident;
 							//(int)(body[length-1].color*1.1);
 					
