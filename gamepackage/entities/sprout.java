@@ -11,15 +11,17 @@ public class sprout extends Entity {
 	//public cell[] body = new cell[10];
 	public cell[] body;
 	public static int decision;
+	public int maxLength;
 
 	public int length;
 	Random random = new Random();
 	
-	public sprout(int xf, int yf, int colorf, int lifef) {
+	public sprout(int xf, int yf, int colorf, int lifef, int maxLengthc) {
 		super(xf, yf, colorf, lifef);
 		body =  new cell[16];
 		body[0] = bitMap.Map[xf][yf];
 		body[0].color = colorf;
+		maxLength = maxLengthc;
 	
 	
 		// TODO Auto-generated constructor stub
@@ -61,18 +63,31 @@ public class sprout extends Entity {
         	   grow(1,-1);
         	   
                    break;
-          case 4: 
-        	  if(length>6)
-        		body[length].color = 16773424;
-        //	  body[length].branch.viable = 0;
-        	  break;
-          case 5:
-        	  decision = random.nextInt(30);
-        	  if(decision == 6 && bitMap.Map[body[length].x+-1][body[length].y].medium==1)
-        	  bitMap.Map[body[length].x+1][body[length].y].Resident = new sprout(body[length].x,body[length].y,29220,10);
-        	  else if(decision == 7 && bitMap.Map[body[length].x-1][body[length].y].medium==1)
+         
+          case 4:
+        	  decision = random.nextInt(10);
+        	  
+        	  
+        	  
+        	  try{
         		  
-        		  bitMap.Map[body[length].x-1][body[length].y].Resident = new sprout(body[length].x,body[length].y,29220,10);  
+            	  if(decision == 6 && bitMap.Map[body[length].x+1][body[length].y].medium==1)
+            	  bitMap.Map[body[length].x+1][body[length].y].Resident = new sprout(body[length].x,body[length].y,29220,10, (maxLength-length));
+            	  else if(decision == 7 && bitMap.Map[body[length].x-1][body[length].y].medium==1)
+            		  bitMap.Map[body[length].x-1][body[length].y].Resident = new sprout(body[length].x,body[length].y,29220,10, (maxLength-length)); 
+            	  
+            	  
+            	  else if(decision == 8){
+            		  if(length>6)
+                  		{body[length].color = 16773424;
+                  	    maxLength = 0;}}
+  				}catch(ArrayIndexOutOfBoundsException e ){
+  					System.out.println("branch failed");
+  					return;
+  				}  
+        	  
+        	  
+        	
         		 
 
           default:
@@ -100,7 +115,7 @@ public class sprout extends Entity {
 		
 	
 		 try{
-				if(length<15 &&(bitMap.Map[body[length].x+dx][ body[length].y+dy].Resident==null))	
+				if(length<maxLength &&(bitMap.Map[body[length].x+dx][ body[length].y+dy].Resident==null))	
 				{
 					length += 1;
 			        body[length] = bitMap.Map[body[length-1].x+dx][ body[length-1].y+dy];
@@ -111,7 +126,7 @@ public class sprout extends Entity {
 					return 1;
 				}
 				else{
-					System.out.println("grow failed!");
+					System.out.println("sprout grow failed!");
 					return 0;
 				}
 				}catch(ArrayIndexOutOfBoundsException e ){

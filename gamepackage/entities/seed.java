@@ -27,7 +27,7 @@ public class seed extends Entity {
 	
 	public void kill(){
 		
-	    body.Resident = new sprout(body.x,body.y,29220,10);
+	    body.Resident = new sprout(body.x,body.y,29220,10, 8+random.nextInt(8));
 	}
 	
 	public void birth(){

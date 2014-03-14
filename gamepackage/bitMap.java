@@ -35,6 +35,8 @@ Populate(21,6);
 Populate(23,1);
 seedbirth(1,1);
 seedbirth(2,2);
+seedbirth(10,1);
+seedbirth(20,2);
 
 }
 

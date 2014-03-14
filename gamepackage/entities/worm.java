@@ -134,7 +134,8 @@ public class worm extends Entity {
                    break;
           default:
         		System.out.println("invalid decision in worm");
-        		life-=1;
+        		ready = 0;
+        		life-=1; 
         		break;
                    
               
