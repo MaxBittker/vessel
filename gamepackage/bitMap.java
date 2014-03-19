@@ -24,7 +24,7 @@ public class bitMap extends GameClass {
 	
 public static void genesis(){
 for( int x = 0;x<60; x+=20)
-{for(int y = 30; y<60; y+=20){
+{for(int y = 40; y<60; y+=10){
 	
 	wormbirth(x,y);
 }

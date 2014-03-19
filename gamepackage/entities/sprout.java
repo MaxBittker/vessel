@@ -16,15 +16,16 @@ public class sprout extends Entity {
 	public int length;
 	Random random = new Random();
 	
-	public sprout(int xf, int yf, int colorf, int lifef, int maxLengthc) {
+	public sprout(int xf, int yf, int colorf, int lifef, int maxLengthc) throws ArrayIndexOutOfBoundsException {
 		super(xf, yf, colorf, lifef);
-		body =  new cell[16];
+		if(maxLengthc<1) 
+		throw( new ArrayIndexOutOfBoundsException());
+		maxLength = maxLengthc;
+		body =  new cell[maxLengthc+1];
 		body[0] = bitMap.Map[xf][yf];
 		body[0].color = colorf;
-		maxLength = maxLengthc;
 	
 	
-		// TODO Auto-generated constructor stub
 	}
 	
 	
@@ -126,6 +127,7 @@ public class sprout extends Entity {
 					return 1;
 				}
 				else{
+					ready = 0;
 					System.out.println("sprout grow failed!");
 					return 0;
 				}

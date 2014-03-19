@@ -90,8 +90,8 @@ public class worm extends Entity {
 	
 	public void kill(){
 	    if (life == 0){ 
-	    	int xhold = this.body[length-1].x;
-	    	int yhold = this.body[length-1].y;
+	    	int xhold = this.body[0].x;
+	    	int yhold = this.body[0].y;
 	    	
 	    	
 	    	for (cell cell : body)
@@ -99,7 +99,7 @@ public class worm extends Entity {
 	            cell.Resident = null;
 	            cell.medium = 0;
 	    		}
-	     //   bitMap.Map[xhold][yhold].Resident =new worm(xhold, yhold, 256*255, 50);
+	       bitMap.Map[xhold][yhold].Resident =new worm(xhold, yhold, 00, 50);
 	    	}
 	
 	}
