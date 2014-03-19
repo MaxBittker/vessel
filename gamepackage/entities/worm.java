@@ -18,7 +18,7 @@ public class worm extends Entity {
 	public worm(int xf, int yf, int colorf, int lifef) {
 		super(xf, yf, colorf, lifef);
 		
-		body =  new cell[20];
+		body =  new cell[17];
 		body[0] = bitMap.Map[xf][yf];
 		body[0].color = colorf;
 		length = 0;  //0 index
@@ -55,11 +55,14 @@ public class worm extends Entity {
                 break;
 		 }
 		 try{
-				if(length<20 && ready ==1 &&(bitMap.Map[body[length].x+dx][ body[length].y+dy].Resident==null))	
+				if(length<14 && ready ==1 &&(bitMap.Map[body[length].x+dx][ body[length].y+dy].Resident==null))	
 				{
 					length += 1;
 			        body[length] = bitMap.Map[body[length-1].x+dx][ body[length-1].y+dy];
-					body[length].color = (body[length-1].color + 255*6);
+			        if(length == 1)
+			        {body[length].color =11916201;}
+			        else
+					body[length].color = (body[length-1].color + 255*2 + 4);
 					body[length].Resident = body[0].Resident;
 							//(int)(body[length-1].color*1.1);
 					ready =0;
@@ -92,7 +95,7 @@ public class worm extends Entity {
 	    	
 	    	
 	    	for (cell cell : body)
-	    		{cell.color= 8545569;
+	    		{cell.color= 8545569 + random.nextInt(50);
 	            cell.Resident = null;
 	            cell.medium = 0;
 	    		}
@@ -134,7 +137,7 @@ public class worm extends Entity {
         	  direction++;
                    break;
           case 3: 
-        	grow(1);
+        	grow(random.nextInt(3));
                    break;
           default:
         		System.out.println("invalid decision in worm");
@@ -163,7 +166,7 @@ default:
 	System.out.println("invalid direction in worm");
 	break;
      }
-     body[0].color = 777000000;
+     
  //	grow(0, 666999000, 4);
      }
 	}
@@ -177,24 +180,22 @@ default:
 		try{
 			if((bitMap.Map[(body[0].x)+x][(body[0].y)+y].Resident==null)&&bitMap.Map[(body[0].x)+x][(body[0].y)+y].medium==0)	
 			{
-				int colorhold = body[0].color;
+				
 				int[] xyhold = {body[0].x,body[0].y};
-		
+				bitMap.Map[body[0].x+x][body[0].y+y].color = body[0].color;
 				body[0]= bitMap.Map[body[0].x+x][body[0].y+y];
 				body[0].Resident = this;
-				body[0].color = colorhold;
 				
 				for(int i = 1; i  <= length; i++){
-				
-			colorhold = body[i].color;
-			 
+
 			int xhold = body[i].x;
 			int	yhold = body[i].y;
+			 bitMap.Map[xyhold[0]][xyhold[1]].color = body[i].color;
 			body[i]= bitMap.Map[xyhold[0]][xyhold[1]];
 			xyhold[0] = xhold;
 			xyhold[1] = yhold;
 			body[i].Resident = this;
-			body[i].color = colorhold;
+		
 			if(i == length){
 				bitMap.Map[xhold][yhold].color=(5963797+255*10);
 				bitMap.Map[xhold][yhold].Resident= null;
@@ -203,7 +204,7 @@ default:
 			
 			}
 				if(length == 0)
-				{	bitMap.Map[xyhold[0]][xyhold[1]].color = (5963798);
+				{	bitMap.Map[xyhold[0]][xyhold[1]].color = (5963798+255*10);
 					bitMap.Map[xyhold[0]][xyhold[1]].Resident = null;
 				}
 			

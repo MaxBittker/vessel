@@ -58,8 +58,9 @@ seedbirth(20,2);
 	
 	public static void wormbirth(int x, int y)
 	{
-	worm temp= new worm(x,y,11916201,50);//color then life
-	Map[x][y].Resident= temp;
+		if(Map[x][y].medium == 0){
+	worm temp= new worm(x,y,6761471,55);//color then life
+	Map[x][y].Resident= temp;}
 		
 	
 	
@@ -77,12 +78,16 @@ seedbirth(20,2);
 		 		}
 		
 	}
+		 int floatdepth = 33;
 		 for(int i =0;i < GameClass.WIDTH; i++)
 	 		{
+			 if(i%2 ==0){
+			  floatdepth += random.nextInt(2);
+			  floatdepth -= random.nextInt(2);}
 		 for(int j =0;j <GameClass.HEIGHT; j++)
 		 		{
 	
-	 if(Map[i][j].y>26)
+	 if(Map[i][j].y>floatdepth)
 	 { Map[i][j].medium=0;
 	 Map[i][j].color = 5963793 + random.nextInt(10) + random.nextInt(10)*255 - random.nextInt(7)*255*255;
 	 }	
