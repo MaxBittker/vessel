@@ -90,17 +90,22 @@ public class worm extends Entity {
 	
 	public void kill(){
 	    if (life == 0){ 
-	    	int xhold = this.body[0].x;
-	    	int yhold = this.body[0].y;
+	    	int xhold = body[0].x;
+	    	int yhold = body[0].y;
 	    	
 	    	
 	    	for (cell cell : body)
 	    		{cell.color= 8545569 + random.nextInt(50);
-	            cell.Resident = null;
-	            cell.medium = 0;
+	    	//	if(((cell.x*cell.y)%18) ==2)
+	    //			cell.Resident =  new worm(cell.x, cell.y, 00, 50);
+	    	//	else  {
+	    			cell.Resident = null;
+	            cell.medium = 0;//}
 	    		}
-	       bitMap.Map[xhold][yhold].Resident =new worm(xhold, yhold, 00, 50);
-	    	}
+	    //	worm temp = new worm(xhold, yhold, 00, 50);
+	  //  	System.out.println(xhold+" " +yhold);
+	  //     bitMap.Map[xhold][yhold].Resident =temp;
+	     	    	}
 	
 	}
 	
@@ -115,14 +120,13 @@ public class worm extends Entity {
 	
 	else
 	{
-	decision = random.nextInt(5);
+	decision = random.nextInt(10);
 
 	if(ready ==1){
 		//if(life<0)
 		//	return;
       switch (decision) {
-          case 0: 
-         // move(1,1);
+          case 0:      
                    break;
           case 1: if(direction <= 0)
           {  direction = 3;}
@@ -141,8 +145,8 @@ public class worm extends Entity {
                    break;
           default:
         		System.out.println("invalid decision in worm");
-        		ready = 0;
-        		life-=1; 
+        	//	ready = 0;
+        		 
         		break;
                    
               
@@ -217,6 +221,7 @@ default:
 			
 			else{
 				direction = ((direction+1)%4);
+				life-=1;
 				
 			}
 			}catch(ArrayIndexOutOfBoundsException e ){
