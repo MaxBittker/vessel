@@ -119,6 +119,7 @@ public class GameClass extends Canvas implements Runnable{
 			
 			try{
 				q.Resident.tick();
+				
 			//	q.Resident.move(-1,1);
 			}catch(NullPointerException e ){
 			}

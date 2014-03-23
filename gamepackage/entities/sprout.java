@@ -80,7 +80,7 @@ public class sprout extends Entity {
             	  
             	  else if(decision == 8){
             		  if(length>6)
-                  		{body[length].color = 16773424;
+                  		{body[length].color = 16773424; 
                   	    maxLength = 0;}}
   				}catch(ArrayIndexOutOfBoundsException e ){
   					System.out.println("branch failed");
@@ -88,8 +88,8 @@ public class sprout extends Entity {
   				}  
         	  
         	  
-        	
-        		 
+	        	
+	        		 
 
           default:
         	  ready = 0;
