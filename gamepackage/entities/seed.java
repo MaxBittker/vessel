@@ -27,7 +27,7 @@ public class seed extends Entity {
 	
 	public void kill(){
 		
-	    body.Resident = new sprout(body.x,body.y,29220,10, 8+random.nextInt(8));
+	    body.Resident = new sprout(body.x,body.y,29220,100, 8+random.nextInt(8));
 	}
 	
 	public void birth(){
@@ -69,8 +69,15 @@ public class seed extends Entity {
 			else{
 				if(bitMap.Map[(body.x)+x][(body.y)+y].medium==0)
 			 kill();
-			}
-			}catch(ArrayIndexOutOfBoundsException e ){
+				else{
+				
+					body.color= (6340095-body.y);
+				    
+				    			body.Resident = null;
+				            body.medium = 1;//})
+				
+			}}}
+			catch(ArrayIndexOutOfBoundsException e ){
 				//not sure
 			}
 		

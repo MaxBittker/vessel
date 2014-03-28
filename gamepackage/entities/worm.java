@@ -13,6 +13,7 @@ public class worm extends Entity {
 	public int length;
 	public static int decision;
 	public int direction;
+	
 	Random random = new Random();
 
 	public worm(int xf, int yf, int colorf, int lifef) {

@@ -193,10 +193,12 @@ public class bird extends Entity {
 		try{
 			//if((bitMap.Map[(body[0].x)+x][(body[0].y)+y].Resident.color == 16773424))
 			//{
-			int colorhold = body[0].color;
-			body[0].color=(6340095-body[0].y);
-			body[0].Resident.kill();
-			body[0].Resident = null;
+			int colorhold = body[0].color; 
+			body[0].color=(6340095-body[0].y); //set color to sky
+			
+			bitMap.Map[body[0].x+x][body[0].y+y].Resident.life = 96; //-= 101;
+			
+			body[0].Resident = null; //set  current resident to nothing
 			body[0]= bitMap.Map[body[0].x+x][body[0].y+y];
 			body[0].Resident = this;
 			body[0].color = colorhold;
