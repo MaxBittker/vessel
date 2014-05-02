@@ -36,10 +36,12 @@ Populate(21,1);
 Populate(20,1);
 Populate(21,6);
 Populate(23,1);
+
 seedbirth(1,1);
-seedbirth(2,2);
-seedbirth(10,1);
-seedbirth(20,2);
+seedbirth(12,1);
+seedbirth(33,1);
+seedbirth(40,1);
+seedbirth(55,1);
 
 }
 

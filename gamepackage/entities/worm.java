@@ -13,6 +13,7 @@ public class worm extends Entity {
 	public int length;
 	public static int decision;
 	public int direction;
+	public boolean moved;
 	
 	Random random = new Random();
 
@@ -24,6 +25,7 @@ public class worm extends Entity {
 		body[0].color = colorf;
 		length = 0;  //0 index
 		direction = 0;
+		moved = false;
 		body[0].Resident= this;
 	
 	}
@@ -116,6 +118,7 @@ public class worm extends Entity {
 	public void tick(){
 		//body.color = body.color*2;
 		//life = life -1;
+		
 	if(life <= 0)
 	kill();
 	
@@ -123,7 +126,15 @@ public class worm extends Entity {
 	{
 	decision = random.nextInt(10);
 
+	if(ready ==1 && moved)
+		{
+			ready = 0;
+			moved = !moved;
+		}
+		
+	
 	if(ready ==1){
+				
 		//if(life<0)
 		//	return;
       switch (decision) {
@@ -142,17 +153,21 @@ public class worm extends Entity {
         	  direction++;
                    break;
           case 3: 
-        	grow(random.nextInt(3));
-                   break;
+        	
+        	  if(random.nextInt(4) == 3)
+        			  grow(random.nextInt(3));
+              
+        	  break;
           default:
         		System.out.println("invalid decision in worm");
         	//	ready = 0;
         		 
         		break;
                    
-              
+       
+      }  if(length>9 && direction == 2)
+         {direction =0;} 
       
-      }
       //decision = decision % 7;
      switch(direction){
      case 0: 
@@ -171,7 +186,7 @@ default:
 	System.out.println("invalid direction in worm");
 	break;
      }
-     
+     moved = true;
  //	grow(0, 666999000, 4);
      }
 	}

@@ -33,8 +33,9 @@ public class bird extends Entity {
 	}
 	
 	public void kill(){
-	    if (life == 0){ 
-	    	color = 000000;}
+		
+		body[0].Resident = new wormseed(body[0].x, body[0].y,888888,16);
+		body =null;
 	}
 	
 
@@ -115,8 +116,8 @@ public class bird extends Entity {
                    break;
           case 3: 
         	 decision = random.nextInt(60);
-        	 if(decision==50)
-        	  bitMap.Map[body[0].x][body[0].y+1].Resident = new seed(body[0].x, body[0].y+1,0,16);
+        	// if(decision==50)
+        	//  bitMap.Map[body[0].x][body[0].y+1].Resident = new seed(body[0].x, body[0].y+1,0,16);
                    break;
           default:
         	  ready = 0;
@@ -126,9 +127,15 @@ public class bird extends Entity {
 	    	 //body[0].color = 12762623+ (direction*2*255);
 	         if(ATE>0 &&ready ==1)
 	         {
-	        	body[0].color =  (16726648* ATE);
+	        	body[0].color -= ATE;
+	        			// (16726648* ATE);
 	        	ATE-=1;
-	        	if(ATE ==1)
+	        	if(random.nextInt(100)==5)
+	        	{
+	        		 bitMap.Map[body[0].x][body[0].y+1].Resident = new bird(body[0].x, body[0].y+1,12762623,16);	
+	        		
+	        	}
+	        	if(ATE <=5)
 	        	kill();
 	         }
       
