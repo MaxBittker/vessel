@@ -118,7 +118,7 @@ wilt();
                   		life += 100;
                   	    maxLength = 0;}}
   				}catch(ArrayIndexOutOfBoundsException e ){
-  					System.out.println("branch failed");
+  					//System.out.println("branch failed");
   					return;
   				}  
         	  
@@ -161,7 +161,7 @@ wilt();
 				}
 				else{
 					ready = 0;
-					System.out.println("sprout grow failed!");
+			//		System.out.println("sprout grow failed!");
 					return 0;
 				}
 				}catch(ArrayIndexOutOfBoundsException e ){

@@ -54,7 +54,7 @@ public class worm extends Entity {
           	dy = 0;
               break;
          default:
-                System.out.println("invalid growdirection");
+                //System.out.println("invalid growdirection");
                 break;
 		 }
 		 try{
@@ -72,7 +72,7 @@ public class worm extends Entity {
 					return 1;
 				}
 				else{
-					System.out.println("grow failed!");
+				//	System.out.println("grow failed!");
 					ready =0;
 					return 0;
 				}
@@ -102,10 +102,16 @@ public class worm extends Entity {
 	    	//	if(((cell.x*cell.y)%18) ==2)
 	    //			cell.Resident =  new worm(cell.x, cell.y, 00, 50);
 	    	//	else  {
-	    			cell.Resident = null;
+	    		if(bitMap.Map[cell.x][cell.y-1].medium == 1)
+		    	 bitMap.Map[cell.x][cell.y-1].Resident = new seed(cell.x,cell.y-1,1044000,1000);
+	    		//else{	
+	    		cell.Resident = null;
 	            cell.medium = 0;//}
+	    		//}
 	    		}
-	    //	worm temp = new worm(xhold, yhold, 00, 50);
+	    	//if(bitMap.Map[xhold][yhold-1].medium == 1)
+	    	// bitMap.Map[xhold][yhold-1].Resident = new seed(xhold,yhold-1,100000,1000);
+	    			 //sprout(xhold,yhold,29220,100, 8+random.nextInt(8));
 	  //  	System.out.println(xhold+" " +yhold);
 	  //     bitMap.Map[xhold][yhold].Resident =temp;
 	     	    	}
@@ -159,7 +165,7 @@ public class worm extends Entity {
               
         	  break;
           default:
-        		System.out.println("invalid decision in worm");
+        	//	System.out.println("invalid decision in worm");
         	//	ready = 0;
         		 
         		break;
@@ -183,7 +189,7 @@ public class worm extends Entity {
     	 move(-1,0);
     	 break;
 default:
-	System.out.println("invalid direction in worm");
+	//System.out.println("invalid direction in worm");
 	break;
      }
      moved = true;

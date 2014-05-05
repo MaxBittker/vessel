@@ -64,7 +64,7 @@ public class GameClass extends Canvas implements Runnable{
 	
 	public void run() {
 		long lastTime = System.nanoTime();
-		double nsPerTick = 200000000;
+		double nsPerTick = 200000000;//200000000
 		int ticks = 0;
 		int frames = 0;
 		
